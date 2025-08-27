@@ -3,195 +3,235 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio de David</title>
-  
-  <!-- Google Fonts -->
+  <title>David — Développeur Full Stack</title>
+
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  
-  <!-- Icônes -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  
+
   <style>
-    /* Reset */
     *{margin:0;padding:0;box-sizing:border-box;}
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0d0d0d;
-      color: #f4f4f4;
-      overflow-x: hidden;
+    body{
+      font-family:'Poppins',sans-serif;
+      background-color:#0d0d0d;
+      color:#f4f4f4;
+      scroll-behavior:smooth;
     }
 
-    /* HEADER HERO */
-    header {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-                  url('images/header-bg.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      animation: fadeIn 1.5s ease-in-out;
+    /* NAVIGATION */
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      background:rgba(0,0,0,0.6);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 30px;
+      z-index:1000;
+      backdrop-filter:blur(10px);
     }
-    header h1 {
-      font-size: 3rem;
-      color: #00f2ff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    nav a{
+      color:#f4f4f4;
+      text-decoration:none;
+      margin:0 15px;
+      font-weight:500;
+      transition:color 0.3s ease;
     }
-    header p {
-      margin: 15px 0;
-      font-size: 1.2rem;
-      max-width: 600px;
+    nav a:hover{
+      color:#00f2ff;
     }
-    .btn {
-      padding: 12px 25px;
-      background: #00f2ff;
-      border: none;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
+
+    /* HERO */
+    header{
+      height:100vh;
+      background:url('images/header-bg.jpg') center/cover fixed no-repeat;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
     }
-    .btn:hover {
-      background: #00c3d6;
-      transform: scale(1.05);
+    header h1{
+      font-size:3.5rem;
+      color:#00f2ff;
+      animation:fadeInDown 1s ease-out;
+    }
+    header p{
+      max-width:600px;
+      margin:15px 0 25px;
+      font-size:1.2rem;
+      color:#ccc;
+      animation:fadeInUp 1.2s ease-out;
+    }
+    .btn{
+      padding:12px 30px;
+      border:none;
+      background:#00f2ff;
+      color:#000;
+      font-weight:bold;
+      border-radius:30px;
+      cursor:pointer;
+      transition:all 0.3s ease;
+    }
+    .btn:hover{
+      background:#00c3d6;
+      transform:scale(1.05);
     }
 
     /* ANIMATIONS */
-    @keyframes fadeIn {
-      from {opacity:0;}
-      to {opacity:1;}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+    /* SECTIONS */
+    section{
+      padding:80px 20px;
+      max-width:1200px;
+      margin:auto;
     }
-    @keyframes slideUp {
-      from {transform: translateY(30px); opacity:0;}
-      to {transform: translateY(0); opacity:1;}
+    section h2{
+      color:#00f2ff;
+      text-align:center;
+      margin-bottom:50px;
+      font-size:2rem;
+      position:relative;
+    }
+    section h2::after{
+      content:'';
+      position:absolute;
+      bottom:-15px;
+      left:50%;
+      transform:translateX(-50%);
+      width:80px;
+      height:3px;
+      background:#00f2ff;
     }
 
-    /* SECTION TITLES */
-    section {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
+    /* PROJECTS */
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
     }
-    section h2 {
-      color: #00f2ff;
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 2rem;
-      position: relative;
+    .card{
+      background:#1a1a1a;
+      border-radius:15px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+      transition:transform 0.4s ease, box-shadow 0.4s ease;
     }
-    section h2::after {
-      content: '';
-      width: 80px;
-      height: 3px;
-      background: #00f2ff;
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
+    .card img{
+      width:100%;
+      display:block;
+      transition:transform 0.4s ease;
     }
-
-    /* PROJECT CARDS */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 20px;
+    .card:hover img{
+      transform:scale(1.05);
     }
-    .card {
-      background: #1a1a1a;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: slideUp 0.6s ease forwards;
+    .card-content{
+      padding:20px;
     }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 25px rgba(0,242,255,0.3);
+    .card h3{
+      color:#fff;
+      margin-bottom:10px;
     }
-    .card h3 {
-      color: #fff;
-      margin-bottom: 10px;
+    .card p{
+      color:#bbb;
+      font-size:0.95rem;
     }
-    .card p {
-      color: #ccc;
-      font-size: 0.95rem;
-      margin-bottom: 10px;
+    .card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 12px 25px rgba(0,242,255,0.25);
     }
 
     /* SKILLS */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:15px;
     }
-    .skill-badge {
-      background: #262626;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      color: #00f2ff;
-      border: 1px solid #00f2ff;
-      transition: 0.3s;
+    .skill-badge{
+      padding:10px 20px;
+      border-radius:30px;
+      border:1px solid #00f2ff;
+      color:#00f2ff;
+      background:#111;
+      transition:0.3s;
     }
-    .skill-badge:hover {
-      background: #00f2ff;
-      color: #000;
+    .skill-badge:hover{
+      background:#00f2ff;
+      color:#000;
     }
 
     /* CONTACT */
-    .contact {
-      text-align: center;
-      font-size: 1.1rem;
+    .contact{
+      text-align:center;
+      font-size:1.1rem;
     }
-    .contact a {
-      color: #00f2ff;
+    .contact a{
+      color:#00f2ff;
+      text-decoration:none;
     }
 
-    footer {
-      background: #000;
-      padding: 20px;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #777;
+    /* FOOTER */
+    footer{
+      background:#000;
+      padding:20px;
+      text-align:center;
+      font-size:0.85rem;
+      color:#777;
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">David</div>
+    <div>
+      <a href="#projets">Projets</a>
+      <a href="#competences">Compétences</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <header>
     <h1>David — Développeur Full Stack</h1>
-    <p>Je transforme des idées en solutions digitales modernes, performantes et engageantes.</p>
-    <a href="#projets"><button class="btn">Découvrir mes projets</button></a>
+    <p>Des solutions web modernes, performantes et qui marquent les esprits.</p>
+    <a href="#projets"><button class="btn">Voir mes projets</button></a>
   </header>
 
-  <!-- PROJECTS -->
+  <!-- PROJETS -->
   <section id="projets">
     <h2>🚀 Projets phares</h2>
     <div class="projects">
       <div class="card">
-        <h3>KING_MD</h3>
-        <p>Bot WhatsApp rapide et optimisé.</p>
-        <a href="https://github.com/Crazynotdev/KING_MD" target="_blank">Voir sur GitHub</a>
+        <img src="images/project1.jpg" alt="KING_MD">
+        <div class="card-content">
+          <h3>KING_MD</h3>
+          <p>Bot WhatsApp rapide et optimisé — <a href="https://github.com/Crazynotdev/KING_MD" target="_blank">GitHub</a></p>
+        </div>
       </div>
       <div class="card">
-        <h3>QUEEN_SOFIA</h3>
-        <p>Automatisation avancée pour messagerie.</p>
-        <a href="https://github.com/Crazynotdev/QUEEN_SOFIA" target="_blank">Voir sur GitHub</a>
+        <img src="images/project2.jpg" alt="QUEEN_SOFIA">
+        <div class="card-content">
+          <h3>QUEEN_SOFIA</h3>
+          <p>Automatisation avancée pour messagerie — <a href="https://github.com/Crazynotdev/QUEEN_SOFIA" target="_blank">GitHub</a></p>
+        </div>
       </div>
       <div class="card">
-        <h3>Quote-Api</h3>
-        <p>API pour générer des citations motivantes.</p>
-        <a href="https://github.com/Crazynotdev/Quote-Api" target="_blank">Voir sur GitHub</a>
+        <img src="images/project3.jpg" alt="Quote-Api">
+        <div class="card-content">
+          <h3>Quote-Api</h3>
+          <p>API pour citations motivantes — <a href="https://github.com/Crazynotdev/Quote-Api" target="_blank">GitHub</a></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- COMPÉTENCES -->
   <section id="competences">
     <h2>💡 Compétences</h2>
     <div class="skills">
@@ -199,29 +239,19 @@
       <span class="skill-badge">CSS3 / Tailwind</span>
       <span class="skill-badge">JavaScript / React</span>
       <span class="skill-badge">Node.js</span>
-      <span class="skill-badge">Git / GitHub Actions</span>
+      <span class="skill-badge">Git / CI-CD</span>
     </div>
-  </section>
-
-  <!-- YOUTUBE -->
-  <section id="youtube">
-    <h2>📺 Mes contenus</h2>
-    <p class="contact">Découvrez mes tutoriels et reviews tech sur 
-      <a href="https://www.youtube.com/@DavidTechIn" target="_blank">ma chaîne YouTube</a>.
-    </p>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <h2>📩 Contact</h2>
-    <p class="contact">
-      📧 <a href="mailto:contact@david.dev">contact@david.dev</a>
-    </p>
+    <p class="contact">📧 <a href="mailto:contact@david.dev">contact@david.dev</a></p>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 David | Design & code avec passion
+    &copy; 2025 David | Créé avec passion et expertise
   </footer>
 
 </body>
